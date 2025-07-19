@@ -11,7 +11,16 @@ import {
   LogOut,
   Moon,
   Sun,
-  Monitor
+  Monitor,
+  FileText,
+  Zap,
+  Tag,
+  MessageCircle,
+  GitBranch,
+  Megaphone,
+  Smartphone,
+  Puzzle,
+  Code
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -37,11 +46,27 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const navigation = [
+const mainNavigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
+  { name: "Atendimentos", href: "/tickets", icon: MessageSquare },
   { name: "Clientes", href: "/clients", icon: Users },
-  { name: "FAQ/Prompts", href: "/faq", icon: MessageSquare },
+  { name: "FAQ/Prompts", href: "/faq", icon: FileText },
   { name: "Relatórios", href: "/reports", icon: BarChart3 },
+];
+
+const toolsNavigation = [
+  { name: "Respostas Rápidas", href: "/quick-responses", icon: Zap },
+  { name: "Tags", href: "/tags", icon: Tag },
+  { name: "Chat Interno", href: "/internal-chat", icon: MessageCircle },
+];
+
+const adminNavigation = [
+  { name: "Usuários", href: "/users", icon: Users },
+  { name: "Filas & Chatbot", href: "/queues", icon: GitBranch },
+  { name: "Campanhas", href: "/campaigns", icon: Megaphone },
+  { name: "Conexões", href: "/connections", icon: Smartphone },
+  { name: "Integrações", href: "/integrations", icon: Puzzle },
+  { name: "API", href: "/api", icon: Code },
   { name: "Configurações", href: "/settings", icon: Settings },
 ];
 
@@ -99,14 +124,57 @@ export function AppSidebar() {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="p-4">
+      <SidebarContent className="p-4 space-y-6">
+        {/* Main Navigation */}
         <SidebarGroup>
           <SidebarGroupLabel className={cn("mb-2", collapsed && "sr-only")}>
             Menu Principal
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className="space-y-1">
-              {navigation.map((item) => (
+              {mainNavigation.map((item) => (
+                <SidebarMenuItem key={item.name}>
+                  <SidebarMenuButton asChild>
+                    <NavLink to={item.href} className={getNavClasses(item.href)}>
+                      <item.icon className="h-5 w-5 flex-shrink-0" />
+                      {!collapsed && <span>{item.name}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Tools Navigation */}
+        <SidebarGroup>
+          <SidebarGroupLabel className={cn("mb-2", collapsed && "sr-only")}>
+            Ferramentas
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu className="space-y-1">
+              {toolsNavigation.map((item) => (
+                <SidebarMenuItem key={item.name}>
+                  <SidebarMenuButton asChild>
+                    <NavLink to={item.href} className={getNavClasses(item.href)}>
+                      <item.icon className="h-5 w-5 flex-shrink-0" />
+                      {!collapsed && <span>{item.name}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Admin Navigation */}
+        <SidebarGroup>
+          <SidebarGroupLabel className={cn("mb-2", collapsed && "sr-only")}>
+            Administração
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu className="space-y-1">
+              {adminNavigation.map((item) => (
                 <SidebarMenuItem key={item.name}>
                   <SidebarMenuButton asChild>
                     <NavLink to={item.href} className={getNavClasses(item.href)}>
