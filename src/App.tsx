@@ -7,11 +7,14 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Layout } from "@/components/layout";
 import Dashboard from "./pages/Dashboard";
 import Tickets from "./pages/Tickets";
+import TicketConversation from "./pages/TicketConversation";
 import Clients from "./pages/Clients";
 import FAQ from "./pages/FAQ";
 import Reports from "./pages/Reports";
 import Tags from "./pages/Tags";
 import Connections from "./pages/Connections";
+import Users from "./pages/Users";
+import Webhooks from "./pages/Webhooks";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -30,11 +33,14 @@ const App = () => (
             <Route path="/" element={<Layout />}>
               <Route index element={<Dashboard />} />
               <Route path="tickets" element={<Tickets />} />
+              <Route path="ticket/:ticketId" element={<TicketConversation />} />
               <Route path="clients" element={<Clients />} />
               <Route path="faq" element={<FAQ />} />
               <Route path="reports" element={<Reports />} />
               <Route path="tags" element={<Tags />} />
               <Route path="connections" element={<Connections />} />
+              <Route path="users" element={<Users />} />
+              <Route path="webhooks" element={<Webhooks />} />
               <Route path="settings" element={<Settings />} />
             </Route>
             <Route path="*" element={<NotFound />} />

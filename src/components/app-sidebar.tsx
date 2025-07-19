@@ -65,7 +65,7 @@ const adminNavigation = [
   { name: "Filas & Chatbot", href: "/queues", icon: GitBranch },
   { name: "Campanhas", href: "/campaigns", icon: Megaphone },
   { name: "Conexões", href: "/connections", icon: Smartphone },
-  { name: "Integrações", href: "/integrations", icon: Puzzle },
+  { name: "Webhooks", href: "/webhooks", icon: Puzzle },
   { name: "API", href: "/api", icon: Code },
   { name: "Configurações", href: "/settings", icon: Settings },
 ];

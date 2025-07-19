@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -101,6 +102,7 @@ const priorityColors = {
 };
 
 export default function Tickets() {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedQueue, setSelectedQueue] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
@@ -165,7 +167,12 @@ export default function Tickets() {
           <Badge className={`text-xs ${priorityColors[ticket.priority]}`}>
             {ticket.priority === "high" ? "Alta" : ticket.priority === "medium" ? "Média" : "Baixa"}
           </Badge>
-          <Button size="sm" variant="outline" className="h-7 text-xs">
+          <Button 
+            size="sm" 
+            variant="outline" 
+            className="h-7 text-xs"
+            onClick={() => navigate(`/ticket/${ticket.id}`)}
+          >
             <Eye className="h-3 w-3 mr-1" />
             Ver Ticket
           </Button>
