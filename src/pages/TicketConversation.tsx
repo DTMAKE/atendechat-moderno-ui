@@ -108,13 +108,29 @@ export default function TicketConversation() {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [ticket] = useState<TicketData>(mockTicket);
-  const [messages] = useState<Message[]>(mockMessages);
+  const [messages, setMessages] = useState<Message[]>(mockMessages);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (message.trim()) {
-      // Aqui seria enviado para o backend/WhatsApp
-      console.log("Enviando mensagem:", message);
-      setMessage("");
+      try {
+        // Aqui seria implementada a integração com Evolution API
+        // Exemplo: await sendTextMessage(instanceName, apiKey, phoneNumber, message);
+        console.log("Enviando mensagem via Evolution API:", message);
+        
+        // Simular envio da mensagem
+        const newMessage = {
+          id: Date.now().toString(),
+          type: "outgoing" as const,
+          content: message,
+          timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+          isFromWhatsApp: false
+        };
+
+        setMessages([...messages, newMessage]);
+        setMessage("");
+      } catch (error) {
+        console.error("Erro ao enviar mensagem:", error);
+      }
     }
   };
 
